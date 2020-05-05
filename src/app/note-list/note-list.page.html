@@ -28,7 +28,9 @@
       </tr>
     </tbody>
   </table>
-  <ion-button [routerLink]="['/note-create']">
-    Add a new note
-  </ion-button>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" [routerLink]="['/note-create']">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

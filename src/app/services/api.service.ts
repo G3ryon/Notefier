@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Note } from '../models/note';
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,7 @@ export class ApiService {
   };
 
   // Get notes data
-  getList(): Observable<Note> {
+  getListNotes(): Observable<Note> {
     return this.http
       .get<Note>(this.base_path + 'notes')
       .pipe(
@@ -48,14 +49,54 @@ export class ApiService {
       )
   }
 
-  // Delete item by id
- deleteItem(id) {
-  return this.http
-    .delete<Note>(this.base_path + 'notes/' + id, this.httpOptions)
-    .pipe(
-     retry(2),
-      catchError(this.handleError)
-    )
+  // Get categories data
+  getListCategories(): Observable<Category> {
+    return this.http
+      .get<Category>(this.base_path + 'categories')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
+
+  // Delete item by id
+ deleteNote(id) {
+      return this.http
+      .delete<Note>(this.base_path + 'notes/' + id, this.httpOptions)
+      .pipe(
+       retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  deleteCategory(id){
+      return this.http
+        .delete<Category>(this.base_path + 'categories/' + id, this.httpOptions)
+        .pipe(
+          retry(2),
+            catchError(this.handleError)
+        )
+  }
+
+
+  // Create a new note
+  createItemNotes(item): Observable<Note> {
+    return this.http
+      .post<Note>(this.base_path + 'notes', JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+    // Create a new category
+    createItemCategories(item): Observable<Category> {
+      return this.http
+        .post<Category>(this.base_path + 'categories', JSON.stringify(item), this.httpOptions)
+        .pipe(
+          retry(2),
+          catchError(this.handleError)
+        )
+    }
 
 }

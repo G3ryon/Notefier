@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { ignoreElements } from 'rxjs/operators';
 
 @Component({
   selector: 'app-note-list',
@@ -27,7 +28,7 @@ export class NoteListPage implements OnInit {
 
   getAllNotes() {
     //Get saved list of notes
-    this.apiService.getList().subscribe(response => {
+    this.apiService.getListNotes().subscribe(response => {
       console.log(response);
       this.notesData = response;
     })
@@ -35,7 +36,7 @@ export class NoteListPage implements OnInit {
 
   delete(item) {
     //Delete item in Student data
-    this.apiService.deleteItem(item.id).subscribe(Response => {
+    this.apiService.deleteNote(item.id).subscribe(_Response => {
       //Update list after delete is successful
       this.getAllNotes();
     });
