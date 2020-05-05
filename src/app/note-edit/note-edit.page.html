@@ -19,14 +19,14 @@
  <ion-item>
     <ion-label>Category</ion-label>
     <ion-select [(ngModel)]='data.category'>
-      <ion-select-option *ngFor="let Category of categoryData"  value="{{Category.id}}">{{Category.name}}</ion-select-option>
+      <ion-select-option *ngFor="let Category of categoryData"  value='{"id":{{Category.id}}, "name":"{{Category.name}}"}'>{{Category.name}}</ion-select-option>
     </ion-select>
 </ion-item>
 
 
 
   <ion-item>
-    <ion-button (click)="submitForm()">Add
+    <ion-button (click)="update()">edit
     </ion-button>
   </ion-item>
 

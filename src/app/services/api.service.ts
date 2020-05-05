@@ -59,7 +59,47 @@ export class ApiService {
       )
   }
 
-  // Delete item by id
+  // Get notes data by id
+  getNote(id): Observable<Note> {
+    return this.http
+      .get<Note>(this.base_path + 'notes/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  // Get categories data by id
+  getCategory(id): Observable<Category> {
+    return this.http
+      .get<Category>(this.base_path + 'categories/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  // Update Note by id
+  updateNote(id, item): Observable<Note> {
+    return this.http
+      .put<Note>(this.base_path + 'notes/' + id, JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  // Update category by id
+  updateCategory(id, item): Observable<Category> {
+    return this.http
+      .put<Category>(this.base_path + 'categories/' + id, JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  // Delete Note by id
  deleteNote(id) {
       return this.http
       .delete<Note>(this.base_path + 'notes/' + id, this.httpOptions)
@@ -68,7 +108,7 @@ export class ApiService {
         catchError(this.handleError)
       )
   }
-
+  // Delete category by id
   deleteCategory(id){
       return this.http
         .delete<Category>(this.base_path + 'categories/' + id, this.httpOptions)
