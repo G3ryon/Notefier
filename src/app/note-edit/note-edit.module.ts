@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FolderPageRoutingModule } from './folder-routing.module';
+import { NoteEditPageRoutingModule } from './note-edit-routing.module';
 
-import { FolderPage } from './folder.page';
+import { NoteEditPage } from './note-edit.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FolderPageRoutingModule
+    NoteEditPageRoutingModule
   ],
-  declarations: [FolderPage]
+  declarations: [NoteEditPage]
 })
-export class FolderPageModule {}
+export class NoteEditPageModule {}
