@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Note } from '../models/note';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute,Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-note-edit',
@@ -17,7 +18,8 @@ export class NoteEditPage implements OnInit {
   constructor(
     public activatedRoute: ActivatedRoute,
     public router: Router,
-    public apiService: ApiService) { 
+    public apiService: ApiService,
+    public toastController: ToastController) { 
       
       this.data = new Note();
       this.categoryData = [];
@@ -41,12 +43,21 @@ export class NoteEditPage implements OnInit {
     })
   }
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Note edited',
+      duration: 2000
+    });
+    toast.present();
+  }
+
   update() {
     let JsonString = this.data.category.toString()
     this.data.category = JSON.parse(JsonString)
     //Update item by taking id and updated data object
     this.apiService.updateNote(this.id, this.data).subscribe(response => {
       this.router.navigate(['note-list']);
+      this.presentToast()
     })
   }
 

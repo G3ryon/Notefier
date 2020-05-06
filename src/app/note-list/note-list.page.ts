@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { ignoreElements } from 'rxjs/operators';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-note-list',
@@ -12,12 +12,21 @@ export class NoteListPage implements OnInit {
   notesData: any;
 
   constructor(
-    public apiService: ApiService
+    public apiService: ApiService,
+    public toastController: ToastController
   ) { 
     this.notesData = [];
   }
 
   ngOnInit() {
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Note deleted',
+      duration: 2000
+    });
+    toast.present();
   }
 
   ionViewWillEnter() {
@@ -39,6 +48,7 @@ export class NoteListPage implements OnInit {
     this.apiService.deleteNote(item.id).subscribe(_Response => {
       //Update list after delete is successful
       this.getAllNotes();
+      this.presentToast()
     });
   }
 

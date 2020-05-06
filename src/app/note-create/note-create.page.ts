@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Note } from '../models/note';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-note-create',
@@ -15,6 +16,7 @@ export class NoteCreatePage implements OnInit {
 
   constructor(
     public apiService: ApiService,
+    public toastController: ToastController,
     public router: Router
   ) {
     this.data = new Note();
@@ -38,12 +40,21 @@ export class NoteCreatePage implements OnInit {
     })
   }
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Note created',
+      duration: 2000
+    });
+    toast.present();
+  }
+
   submitForm() {
     //Parsing the string from the form into a proper JSON
     let JsonString = this.data.category.toString()
     this.data.category = JSON.parse(JsonString)
     this.apiService.createItemNotes(this.data).subscribe((response) => {
       this.router.navigate(['note-list']);
+      this.presentToast()
     });
 
 }}

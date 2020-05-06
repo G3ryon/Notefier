@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../models/category';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute,Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-categorie-edit',
@@ -16,7 +17,8 @@ export class CategorieEditPage implements OnInit {
   constructor(
     public activatedRoute: ActivatedRoute,
     public router: Router,
-    public apiService: ApiService
+    public apiService: ApiService,
+    public toastController: ToastController
   ) { 
     this.data = new Category();
   }
@@ -30,10 +32,19 @@ export class CategorieEditPage implements OnInit {
     })
   }
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Category updated',
+      duration: 2000
+    });
+    toast.present();
+  }
+
   update() {
     //Update item by taking id and updated data object
     this.apiService.updateCategory(this.id, this.data).subscribe(response => {
       this.router.navigate(['categorie-list']);
+      this.presentToast();
     })
   }
 }
