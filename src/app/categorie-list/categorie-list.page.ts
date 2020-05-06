@@ -61,7 +61,9 @@ export class CategorieListPage implements OnInit {
     this.notesData.forEach(element => {
       console.log(element)
       if(item.id == element.category.id){
-        this.apiService.deleteNote(element.id)
+        this.apiService.deleteNote(element.id).subscribe(Response => {
+          console.log("done")
+        });
       }
     });
     //Delete item in Student data
