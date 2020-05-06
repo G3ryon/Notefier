@@ -4,28 +4,23 @@
   </ion-toolbar>
 </ion-header>
  
-<ion-content class="ion-padding">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">title</th>
-        <th scope="col">action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of categoryData">
-        <td>{{ item.name }}</td>
-        <td style="display: flex">
-          <ion-button color="warning" size="small" routerLink='/categorie-edit/{{item.id}}'>
+<ion-content>
+  <ion-list>
+  <ion-item-sliding *ngFor="let item of categoryData">
+    <ion-item>
+      <ion-label routerLink='/categorie-detail/{{item.id}}'>{{ item.name }}</ion-label>
+    </ion-item>
+    <ion-item-options side="end">
+         <ion-button color="warning" size="small" routerLink='/categorie-edit/{{item.id}}'>
             <ion-icon name="create"></ion-icon>
           </ion-button>
           <ion-button color="danger" size="small" (click)="delete(item)">
             <ion-icon name="trash"></ion-icon>
           </ion-button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" [routerLink]="['/categorie-create']">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>

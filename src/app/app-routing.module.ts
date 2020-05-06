@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./note-list/note-list.module').then( m => m.NoteListPageModule)
   },
   {
-    path: 'note-detail',
+    path: 'note-detail/:id',
     loadChildren: () => import('./note-detail/note-detail.module').then( m => m.NoteDetailPageModule)
   },
   {
@@ -34,6 +34,10 @@ const routes: Routes = [
   {
     path: 'categorie-create',
     loadChildren: () => import('./categorie-create/categorie-create.module').then( m => m.CategorieCreatePageModule)
+  },
+  {
+    path: 'categorie-detail/:id',
+    loadChildren: () => import('./categorie-detail/categorie-detail.module').then( m => m.CategorieDetailPageModule)
   }
 ];
 
