@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>categorie-edit</ion-title>
+    <ion-title>Edit a category</ion-title>
   </ion-toolbar>
 </ion-header>
+ 
+<ion-content class="ion-padding">
+ 
+  <ion-item>
+    <ion-label>Name</ion-label>
+    <ion-input [(ngModel)]="data.name" placeholder="Enter the name"></ion-input>
+  </ion-item>
+ 
 
-<ion-content>
+  <ion-item>
+    <ion-button (click)="update()">edit
+    </ion-button>
+  </ion-item>
 
-</ion-content>
+
+
+ <ion-fab vertical="bottom" horizontal="end" slot="fixed" [routerLink]="['/categorie-list']">
+    <ion-fab-button>
+      <ion-icon name="arrow-back-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content> 

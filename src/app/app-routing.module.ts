@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./categorie-list/categorie-list.module').then( m => m.CategorieListPageModule)
   },
   {
-    path: 'categorie-edit',
+    path: 'categorie-edit/:id',
     loadChildren: () => import('./categorie-edit/categorie-edit.module').then( m => m.CategorieEditPageModule)
   },
   {

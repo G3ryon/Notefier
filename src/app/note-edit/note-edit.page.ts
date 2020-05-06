@@ -42,7 +42,8 @@ export class NoteEditPage implements OnInit {
   }
 
   update() {
-    this.data.category = JSON.parse(this.data.category)
+    let JsonString = this.data.category.toString()
+    this.data.category = JSON.parse(JsonString)
     //Update item by taking id and updated data object
     this.apiService.updateNote(this.id, this.data).subscribe(response => {
       this.router.navigate(['note-list']);

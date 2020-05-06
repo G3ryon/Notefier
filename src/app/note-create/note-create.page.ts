@@ -39,9 +39,9 @@ export class NoteCreatePage implements OnInit {
   }
 
   submitForm() {
-    console.log(this.data);
     //Parsing the string from the form into a proper JSON
-    this.data.category = JSON.parse(this.data.category)
+    let JsonString = this.data.category.toString()
+    this.data.category = JSON.parse(JsonString)
     this.apiService.createItemNotes(this.data).subscribe((response) => {
       this.router.navigate(['note-list']);
     });
