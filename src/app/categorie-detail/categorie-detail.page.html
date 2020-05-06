@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>categorie-detail</ion-title>
+    <ion-title>{{category.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+  <ion-item-sliding *ngFor="let item of Notes">
+    <ion-item>
+      <ion-label routerLink='/note-detail/{{item.id}}'>{{ item.title }}</ion-label>
+    </ion-item>
+    <ion-item-options side="end">
+         <ion-button color="warning" size="small" routerLink='/note-edit/{{item.id}}'>
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
+          <ion-button color="danger" size="small" (click)="delete(item)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
 
+ <ion-fab vertical="bottom" horizontal="end" slot="fixed" [routerLink]="['/categorie-list']">
+    <ion-fab-button>
+      <ion-icon name="arrow-back-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

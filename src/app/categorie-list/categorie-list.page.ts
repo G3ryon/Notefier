@@ -69,7 +69,7 @@ export class CategorieListPage implements OnInit {
       //Update list after delete is successful
       this.getAllCategories();
       this.getAllNotes();
-      this.presentToast();
+      this.presentToast()
     });
   }
 
