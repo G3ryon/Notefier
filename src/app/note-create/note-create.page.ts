@@ -39,7 +39,7 @@ export class NoteCreatePage implements OnInit {
       this.categoryData = response;
     })
   }
-
+  //notification
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Note created',

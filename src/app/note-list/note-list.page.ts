@@ -20,7 +20,7 @@ export class NoteListPage implements OnInit {
 
   ngOnInit() {
   }
-
+  //notification
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Note deleted',
@@ -44,7 +44,7 @@ export class NoteListPage implements OnInit {
   }
 
   delete(item) {
-    //Delete item in Student data
+    //Delete note
     this.apiService.deleteNote(item.id).subscribe(_Response => {
       //Update list after delete is successful
       this.getAllNotes();

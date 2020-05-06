@@ -23,7 +23,7 @@ export class CategorieCreatePage implements OnInit {
 
   ngOnInit() {
   }
-
+  //Notification
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Category created',

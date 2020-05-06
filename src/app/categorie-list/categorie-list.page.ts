@@ -40,6 +40,7 @@ export class CategorieListPage implements OnInit {
     })
   }
 
+  //notification 
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Category deleted',
@@ -48,6 +49,7 @@ export class CategorieListPage implements OnInit {
     toast.present();
   }
 
+  
   getAllNotes() {
     //Get saved list of notes
     this.apiService.getListNotes().subscribe(response => {
@@ -58,6 +60,7 @@ export class CategorieListPage implements OnInit {
 
 
   delete(item) {
+    //delete linked notes
     this.notesData.forEach(element => {
       console.log(element)
       if(item.id == element.category.id){
@@ -66,7 +69,7 @@ export class CategorieListPage implements OnInit {
         });
       }
     });
-    //Delete item in Student data
+    //Delete category
     this.apiService.deleteCategory(item.id).subscribe(Response => {
       //Update list after delete is successful
       this.getAllCategories();

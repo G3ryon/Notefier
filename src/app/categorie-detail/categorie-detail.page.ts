@@ -45,7 +45,7 @@ export class CategorieDetailPage implements OnInit {
     this.category = response;
   }) 
   this.apiService.getListNotes().subscribe(response => {
-      
+      //getting the notes linked to the category
       this.notesData = response;
       this.notesData.forEach(element => {
     
@@ -55,7 +55,7 @@ export class CategorieDetailPage implements OnInit {
       }
      });
     })}
-  
+    //notification
     async presentToast() {
       const toast = await this.toastController.create({
         message: 'Note deleted',
@@ -65,7 +65,7 @@ export class CategorieDetailPage implements OnInit {
     }
 
     delete(item) {
-      //Delete item in Student data
+      //Delete Note
       this.apiService.deleteNote(item.id).subscribe(_Response => {
         //Update list after delete is successful
         this.router.navigate(['categorie-list']);
